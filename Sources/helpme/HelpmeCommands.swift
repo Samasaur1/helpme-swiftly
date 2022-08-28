@@ -31,6 +31,12 @@ struct Helpme: ParsableCommand {
         return loader.list()
     }
 
+    @OptionGroup var options: Options
+    func run() throws {
+        let loader = HelpmeLoader(dir: options.helpmePath)
+        loader.view(helpme: options.helpme)
+    }
+
     struct View: ParsableCommand {
         @OptionGroup var options: Options
         func run() throws {
